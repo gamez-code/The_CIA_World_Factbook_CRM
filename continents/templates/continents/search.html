@@ -1,8 +1,8 @@
 {% extends "continents/each_base.html" %}
 {% block country %}
-    {% include "continents/continent.html" %}
-    {% for country in countries %}
+    {% for country in object_list %}
         {% if continent.name == country.continent.name %}
+            {% include "continents/continent.html" %}
             <ul>
                 <li>{% include "countries/country.html" %}</li>
             </ul>

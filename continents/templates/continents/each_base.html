@@ -1,0 +1,10 @@
+{% extends "countries/base.html" %}
+{% block title %}Countries into each continent{% endblock %}
+{% block content %}
+    <h1>World</h1>
+    {% for continent in continents %}
+        {% block country %}
+
+        {% endblock %}
+    {% endfor %}
+{% endblock %}
