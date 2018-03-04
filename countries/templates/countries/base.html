@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Geography {% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+
+    {% endblock %}
+    <p><a href="{% url "continents:home" %}"> Continents </a></p>
+    <p><a href="{% url "continents:each" %}"> Countries into each continent </a></p>
+    <p><a href="{% url "home" %}"> Home </a></p>
+    <p><a href="{% url "tags" %}"> Tags </a></p>
+</body>
+</html>

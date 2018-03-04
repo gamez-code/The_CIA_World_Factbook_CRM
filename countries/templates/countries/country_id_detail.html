@@ -1,0 +1,9 @@
+{% extends 'countries/base.html' %}
+{% block content %}
+    <h1>id:{{code_id}}</h1>
+    {% for country in countries %}
+        {% if country.id == code_id %}
+            {% include "countries/country.html" %}
+        {% endif %}
+    {% endfor %}
+{% endblock %}

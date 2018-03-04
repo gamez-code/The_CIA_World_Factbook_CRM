@@ -1,0 +1,15 @@
+{% extends "countries/base.html" %}
+{% block content %}
+    <h1>World</h1>
+    {% comment %} texto prueba {% endcomment %}
+    {% for country in countries %}
+        {% include "countries/country.html" %}
+        {% if True %}
+            Se cumple mmgb
+        {% endif %}
+    {%  endfor %}
+    <p>lorem: {% lorem %}</p>
+    <p>fecha actual: {% now "d-m-Y" %}</p>
+    {{"PRUEBA"|capfirst}}<br>
+    {{request.user}}
+{% endblock %}

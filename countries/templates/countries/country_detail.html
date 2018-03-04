@@ -1,0 +1,8 @@
+{% extends 'countries/base.html' %}
+{% block content %}
+    {% for country in countries %}
+        {% if country.code == code %}
+            {% include "countries/country.html" %}
+        {% endif %}
+    {% endfor %}
+{% endblock %}

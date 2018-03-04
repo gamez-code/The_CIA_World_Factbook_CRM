@@ -1,0 +1,8 @@
+{% extends "countries/base.html" %}
+{% block title %}Countries{% endblock %}
+{% block content %}
+    <h1>World</h1>
+    {% for country in countries %}
+        {% include "countries/country.html" %}
+    {% endfor %}
+{% endblock %}

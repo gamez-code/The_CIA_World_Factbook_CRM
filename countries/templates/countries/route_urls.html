@@ -1,0 +1,6 @@
+<p><a href="{% url "country_id_detail" id=country.id %}">
+    id: {{country.id}}</a></p>
+<p><a href="{% url "country_code_detail" code=country.code %}">
+    code: {{country.code}}</a></p>
+<p><a href="{% url "continents:continents_id_detail" id=country.continent.id %}">
+    Country's Continent: {{country.continent.name}}</a></p>

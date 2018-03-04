@@ -1,0 +1,13 @@
+<h1 style="color: {{country.continent.color}}">Nombre: {{country.name|title}}</h1>
+<p><a href="{% url "countries:country_code_detail" code=country.code %}">
+    code: {{country.code|upper}}</a></p>
+<p><a href="{% url "countries:country_id_detail" id=country.id %}">
+    id: {{country.id}}</a></p>
+<p><a href="{% url "continents:continents_id_detail" id=country.continent.id %}">
+    Country's Continent: {{country.continent.name|title}}</a></p>
+{% if country.name == 'colombia' %}
+    Ahi todas las mujeres le gusta el bowe.
+{% endif %}
+<br>
+
+
