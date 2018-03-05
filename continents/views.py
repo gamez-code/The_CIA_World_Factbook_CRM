@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 from django.views.generic import (TemplateView,)
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from countries.models import Country
+from continents.models import Continent
 # Create your views here.
 class ContinentsView(TemplateView):
     template_name = "continents/continents.html"
@@ -10,11 +13,9 @@ class ContinentsView(TemplateView):
 
         return {'continents': continents}
     """
-class ContinentsDetailIDView(TemplateView):
+class ContinentsDetailIDView(DetailView):
     template_name = "continents/continents_detail.html"
-    def get_context_data(self, *args, **kwargs):
-        id = kwargs['id']
-        return {'id': id}
+    model = Continent
 
 class ContinentsEachOneView(TemplateView):
     template_name = "continents/continents_countries.html"
@@ -30,12 +31,14 @@ class ContinentsSearchView(ListView):
     def get_queryset(self):
         type_ = self.kwargs['type']
         query_ = self.kwargs['query']
-
-        if type_ == 'contains':
-            return Country.objects.filter(name__contains=query_ )
-        elif type_ == 'icontains':
-            return Country.objects.filter(name__icontains=query_)
-        elif type == 'start':
-            return Country.objects.filter(name__startswith=query_)
-        else:
-            return Country.objects.filter(name=query_)
+        try:
+            if type_ == 'contains':
+                return Country.objects.filter(name__contains=query_ )
+            elif type_ == 'icontains':
+                return Country.objects.filter(name__icontains=query_)
+            elif type == 'start':
+                return Country.objects.filter(name__startswith=query_)
+            else:
+                return Country.objects.filter(name=query_)
+        except Country.DoesNotExist as e:
+            raise Http404()

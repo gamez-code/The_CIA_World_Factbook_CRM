@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from countries.models import Country
@@ -13,14 +13,22 @@ class TagsView(TemplateView):
 class CountryDetailView(TemplateView):
     template_name  = 'countries/country_detail.html'
     def get_context_data(self, *args, **kwargs):
-        code = kwargs['code']
-        return {'code': code}
+        try:
+            country = Country.objects.get(code=kwargs['code'].lower())
+        except Country.DoesNotExist as e:
+            raise Http404()
+
+        return {'country': country}
 
 class CountryDetailIDView(TemplateView):
     template_name  = 'countries/country_id_detail.html'
     def get_context_data(self, *args, **kwargs):
-        code_id = kwargs['id']
-        return {'code_id': code_id}
+        try:
+            country = Country.objects.get(id=kwargs['id'])
+        except Country.DoesNotExist as e:
+            raise Http404()
+
+        return {'country': country}
 
 class CountrySearchView(ListView):
     template_name = 'countries/search.html'

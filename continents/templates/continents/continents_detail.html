@@ -1,9 +1,5 @@
 {% extends "countries/base.html" %}
 {% block title %}Continents{% endblock %}
 {% block content%}
-    {% for continent in continents %}
-        {% if continent.id == id %}
-            {% include "continents/continent.html" %}
-        {% endif %}
-    {% endfor %}
+    {% include "continents/continent.html" with continent=object %}
 {% endblock %}

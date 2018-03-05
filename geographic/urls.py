@@ -24,4 +24,5 @@ urlpatterns = [
     path("tags/",TagsView.as_view(), name="tags"),
     path("continents/", include("continents.urls", namespace="continents")),
     path("countries/", include("countries.urls", namespace="countries")),
+    path("people/", include("people.urls", namespace="people")),
 ]
